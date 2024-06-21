@@ -1,0 +1,8 @@
+Make in front for same type content pages:
+meta title
+meta description
+
+page title
+page description
+
+content side on 3 langs(use tabulation like a add tab , but stable not like a new tabs)

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('setting')->nullable();
             $table->string('type')->nullable();
             $table->string('status')->nullable();
+            $table->text('file')->nullable();
             $table->json('additional_data')->nullable();
             $table->timestamps();
         });

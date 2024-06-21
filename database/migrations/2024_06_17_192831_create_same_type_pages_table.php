@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_settings', function (Blueprint $table) {
+        Schema::create('same_type_pages', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('keyword')->nullable();
             $table->string('title_az')->nullable();
             $table->string('title_en')->nullable();
             $table->string('title_ru')->nullable();
@@ -21,8 +21,17 @@ return new class extends Migration
             $table->text('description_en')->nullable();
             $table->text('description_ru')->nullable();
             $table->string('type')->nullable();
-            $table->text('file')->nullable();
+            $table->longText('content_az')->nullable();
+            $table->longText('content_en')->nullable();
+            $table->longText('content_ru')->nullable();
+            $table->text('meta_title_az')->nullable();
+            $table->text('meta_title_en')->nullable();
+            $table->text('meta_title_ru')->nullable();
+            $table->text('meta_description_az')->nullable();
+            $table->text('meta_description_en')->nullable();
+            $table->text('meta_description_ru')->nullable();
             $table->json('additional_data')->nullable();
+            $table->smallInteger('status')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_settings');
+        Schema::dropIfExists('same_type_pages');
     }
 };

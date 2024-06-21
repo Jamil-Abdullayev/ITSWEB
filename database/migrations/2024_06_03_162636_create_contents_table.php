@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_settings', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('keyword')->nullable();
+            $table->string('order_key')->nullable();
             $table->string('title_az')->nullable();
             $table->string('title_en')->nullable();
             $table->string('title_ru')->nullable();
@@ -21,8 +22,9 @@ return new class extends Migration
             $table->text('description_en')->nullable();
             $table->text('description_ru')->nullable();
             $table->string('type')->nullable();
-            $table->text('file')->nullable();
+            $table->text('media')->nullable();
             $table->json('additional_data')->nullable();
+            $table->smallInteger('status')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_settings');
+        Schema::dropIfExists('contents');
     }
 };
