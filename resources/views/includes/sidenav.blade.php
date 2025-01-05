@@ -39,7 +39,7 @@
         <li class="bold"><a class="waves-effect waves-cyan " href="#"><i class="material-icons">home</i><span class="menu-title" data-i18n="Pages">Main Page Settings</span></a></li>
         <li class="bold"><a class="waves-effect waves-cyan " href="#"><i class="material-icons">comment</i><span class="menu-title" data-i18n="Pages">Comments</span></a></li>
         <li class="bold"><a class="waves-effect waves-cyan " href="#"><i class="material-icons">lightbulb_outline</i><span class="menu-title" data-i18n="Pages">Services</span></a></li>
-        <li class="bold"><a class="waves-effect waves-cyan " href="#"><i class="material-icons">info_outline</i><span class="menu-title" data-i18n="Pages">About Page</span></a></li>
+        <li class="bold"><a class="waves-effect waves-cyan " href="{{route('about-view')}}"><i class="material-icons">info_outline</i><span class="menu-title" data-i18n="Pages">About Page</span></a></li>
         <li class="bold"><a class="waves-effect waves-cyan " href="#"><i class="material-icons">question_answer</i><span class="menu-title" data-i18n="Pages">FAQ</span></a></li>
 
 

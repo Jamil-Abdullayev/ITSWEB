@@ -57,95 +57,38 @@
                                                                             <th>Title</th>
                                                                             <th>Description</th>
                                                                             <th>Created At</th>
-                                                                            <th>Status</th>
-                                                                            <th>Priority</th>
                                                                             <th>Actions</th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                        <tr>
-                                                                            <td>Tiger Nixon</td>
-                                                                            <td>System Architect</td>
-                                                                            <td>Edinburgh</td>
-                                                                            <td>61</td>
-                                                                            <td>2011/04/25</td>
-                                                                            <td>
-                                                                                <div class="row">
-                                                                                    <div class="col m3">
-                                                                                        <a href="{{route('blogs.edit', 333)}}"><i class="material-icons">edit</i></a>
+                                                                        @foreach($blogs as $blog)
+                                                                            <tr>
+                                                                                <td>{{$blog->title_en}}</td>
+                                                                                <td>{{$blog->description_en}}</td>
+                                                                                <td>{{$blog->created_at}}</td>
+                                                                                <td>
+                                                                                    <div class="row">
+                                                                                        <div class="col m3">
+                                                                                            <a href="{{route('blogs.edit', $blog->id)}}"><i class="material-icons">edit</i></a>
+                                                                                        </div>
+                                                                                        <div class="col m3">
+                                                                                            <form id="delete-blog-form-{{$blog->id}}" action="{{ route('blogs.destroy', $blog->id) }}" method="POST">
+                                                                                                @csrf
+                                                                                                @method('DELETE')
+                                                                                                <button class="btn" type="submit"><i class="material-icons">delete</i></button>
+                                                                                            </form>
+                                                                                        </div>
                                                                                     </div>
-                                                                                    <div class="col m3">
-                                                                                        <a href="{{route('blogs.show', 333)}}"><i class="material-icons">remove_red_eye</i></a>
-                                                                                    </div>
-                                                                                    <div class="col m3">
-                                                                                        <form id="delete-user-form-{{333}}" action="{{ route('blogs.destroy', 333) }}" method="POST">
-                                                                                            @csrf
-                                                                                            @method('DELETE')
-                                                                                            <button class="btn" type="submit"><i class="material-icons">delete</i></button>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
 
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Tiger Nixon</td>
-                                                                            <td>System Architect</td>
-                                                                            <td>Edinburgh</td>
-                                                                            <td>63</td>
-                                                                            <td>2011/04/25</td>
-                                                                            <td>
-                                                                                <div class="row">
-                                                                                    <div class="col m3">
-                                                                                        <a href="{{route('blogs.edit', 333)}}"><i class="material-icons">edit</i></a>
-                                                                                    </div>
-                                                                                    <div class="col m3">
-                                                                                        <a href="{{route('blogs.show', 333)}}"><i class="material-icons">remove_red_eye</i></a>
-                                                                                    </div>
-                                                                                    <div class="col m3">
-                                                                                        <form id="delete-user-form-{{333}}" action="{{ route('blogs.destroy', 333) }}" method="POST">
-                                                                                            @csrf
-                                                                                            @method('DELETE')
-                                                                                            <button class="btn" type="submit"><i class="material-icons">delete</i></button>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Tiger Nixon</td>
-                                                                            <td>System Architect</td>
-                                                                            <td>Edinburgh</td>
-                                                                            <td>62</td>
-                                                                            <td>2011/04/25</td>
-                                                                            <td>
-                                                                                <div class="row">
-                                                                                    <div class="col m3">
-                                                                                        <a href="{{route('blogs.edit', 333)}}"><i class="material-icons">edit</i></a>
-                                                                                    </div>
-                                                                                    <div class="col m3">
-                                                                                        <a href="{{route('blogs.show', 333)}}"><i class="material-icons">remove_red_eye</i></a>
-                                                                                    </div>
-                                                                                    <div class="col m3">
-                                                                                        <form id="delete-user-form-{{333}}" action="{{ route('blogs.destroy', 333) }}" method="POST">
-                                                                                            @csrf
-                                                                                            @method('DELETE')
-                                                                                            <button class="btn" type="submit"><i class="material-icons">delete</i></button>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </td>
-                                                                        </tr>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
                                                                         </tbody>
                                                                         <tfoot>
                                                                         <tr>
                                                                             <th>Title</th>
                                                                             <th>Description</th>
                                                                             <th>Created At</th>
-                                                                            <th>Status</th>
-                                                                            <th>Priority</th>
                                                                             <th>Actions</th>
                                                                         </tr>
                                                                         </tfoot>

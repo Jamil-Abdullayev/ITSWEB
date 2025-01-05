@@ -1,8 +1,19 @@
-Make in front for same type content pages:
-meta title
-meta description
 
-page title
-page description
+About Us:
+    meta danniye
+    title description sekcii s ciframi(3 cifri)
 
-content side on 3 langs(use tabulation like a add tab , but stable not like a new tabs)
+Services
+    title descr
+    metas
+    sami servisi(noviy modul)
+    2 cifri i dve nadpisi dla nix
+    commenti(title descr + sami kommenti(otdleniy modul poxodu))
+
+Pricing
+    title descr default olaraq
+    sami paketi(ix 2)
+
+Contact
+    Prosto kontaktnaya forma
+

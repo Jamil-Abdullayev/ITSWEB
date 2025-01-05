@@ -1,144 +1,281 @@
 @extends('layouts.app')
 @section('content')
-<!-- BEGIN: Page Main-->
-<div id="main">
-    <div class="row">
-        <div class="pt-3 pb-1" id="breadcrumbs-wrapper">
-            <!-- Search for small screen-->
-            <div class="container">
-                <div class="row">
-                    <div class="col s12 m6 l6">
-                        <h5 class="breadcrumbs-title mt-0 mb-0"><span>Users edit</span></h5>
-                    </div>
-                    <div class="col s12 m6 l6 right-align-md">
-                        <ol class="breadcrumbs mb-0">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a>
-                            </li>
-                            <li class="breadcrumb-item"><a href="#">User</a>
-                            </li>
-                            <li class="breadcrumb-item active">Users Edit
-                            </li>
-                        </ol>
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="pt-3 pb-1" id="breadcrumbs-wrapper">
+                <!-- Search for small screen-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <h5 class="breadcrumbs-title mt-0 mb-0"><span>Blogs</span></h5>
+                        </div>
+                        <div class="col s12 m6 l6 right-align-md">
+                            <ol class="breadcrumbs mb-0">
+                                <li class="breadcrumb-item"><a href="#">Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">Blogs</a>
+                                </li>
+                                <li class="breadcrumb-item active">Add blog
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col s12">
-            <div class="container">
-                <!-- users edit start -->
-                <div class="section users-edit">
-                    <div class="card">
-                        <div class="card-content">
-                            <!-- <div class="card-body"> -->
-                            <ul class="tabs mb-2 row">
-                                <li class="tab">
-                                    <a class="display-flex align-items-center active" id="account-tab" href="#account">
-                                        <i class="material-icons mr-1">person_outline</i><span>Details</span>
-                                    </a>
-                                </li>
-{{--                                <li class="tab">--}}
-{{--                                    <a class="display-flex align-items-center" id="information-tab" href="#information">--}}
-{{--                                        <i class="material-icons mr-2">error_outline</i><span>Information</span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-                            </ul>
-                            <div class="divider mb-3"></div>
-                            <div class="row">
-                                <div class="col s12" id="account">
-                                    <form id="accountForm" method="POST" action="{{route('blogs.store')}}">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col s12 m6">
-                                                <div class="row">
-                                                    <div class="col s12 input-field">
-                                                        <input required id="name" name="name" type="text" class="validate" value="Dean Stanley" data-error=".errorTxt2">
-                                                        <label for="name">Name</label>
-                                                        <small class="errorTxt2"></small>
-                                                    </div>
-                                                    <div class="col s12 input-field">
-                                                        <input required id="email" name="email" type="email" class="validate" value="deanstanley@gmail.com" data-error=".errorTxt3">
-                                                        <label for="email">E-mail</label>
-                                                        <small class="errorTxt3"></small>
-                                                    </div>
+            <div class="col s12">
+                <form id="accountForm" method="POST" action="{{route('blogs.store')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="container">
+                        <!-- users edit start -->
+
+                        <div class="section users-edit">
+                            <div class="card">
+
+                                <div class="card-content">
+                                    <h4 class="card-title">Section Data</h4>
+                                    <div class="row">
+                                        <div class="col s12 m6">
+                                            <div class="row">
+                                                <div class="col s12 input-field">
+                                                    <input required id="title_az" name="title_az"
+                                                           type="text" class="validate" value="Ətraflı"
+                                                           data-error=".errorTxt2">
+                                                    <label for="title_az">Section Title AZ</label>
+                                                    <small class="errorTxt2"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="title_en" name="title_en"
+                                                           type="text" class="validate" value="Blog Detail"
+                                                           data-error=".errorTxt3">
+                                                    <label for="title_en">Section Title EN</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="title_ru" name="title_ru"
+                                                           type="text" class="validate" value="Подробнее"
+                                                           data-error=".errorTxt3">
+                                                    <label for="title_ru">Section Title RU</label>
+                                                    <small class="errorTxt3"></small>
                                                 </div>
                                             </div>
-
-                                            <div class="col s12 input-field">
-                                                <input required id="password" name="password" type="text" class="validate">
-                                                <label for="password">Password</label>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div class="row">
+                                                <div class="col s12 input-field">
+                                                    <input required id="description_az"
+                                                           name="description_az" type="text" class="validate"
+                                                           value="Xəbər haqqında ətraflı məlumat" data-error=".errorTxt2">
+                                                    <label for="description_az">Section Description AZ</label>
+                                                    <small class="errorTxt2"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="description_en"
+                                                           name="description_en" type="text" class="validate"
+                                                           value="Description of blog details" data-error=".errorTxt3">
+                                                    <label for="description_en">Section Description EN</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="description_ru"
+                                                           name="description_ru" type="text" class="validate"
+                                                           value="Подробнее про данный блог" data-error=".errorTxt3">
+                                                    <label for="description_ru">Section Description RU</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                            <div class="col s12 m12">
-                                                <div class="row">
-                                                    <div class="col s12 input-field">
-                                                        <div class="full-editor">
-                                                            <div class="row">
-                                                                <h6>Description</h6>
-                                                                <div class="col s12">
-                                                                    <div class="card">
-                                                                       <div class="col s12">
-                                                                                    <div id="full-wrapper">
-                                                                                        <div id="full-container">
-                                                                                            <div class="editor">
-                                                                                                <h1 class="ql-align-center">Quill Rich Text Editor</h1>
-                                                                                                <p><br></p>
-                                                                                                <p>Quill is a free, <a href="https://github.com/quilljs/quill/">open source</a> WYSIWYG editor
-                                                                                                    built for the modern web. With its <a href="http://quilljs.com/docs/modules/">modular
-                                                                                                        architecture</a> and expressive <a href="http://quilljs.com/docs/api/">API</a>, it is
-                                                                                                    completely customizable to fit any need.</p>
-                                                                                                <p><br></p>
-                                                                                                <iframe class="ql-video ql-align-center" src="https://www.youtube.com/embed/QHH3iSeDBLo?showinfo=0" width="560" height="238"></iframe>
-                                                                                                <p><br></p>
-                                                                                                <p><br></p>
-                                                                                                <h2 class="ql-align-center">Getting Started is Easy</h2>
-                                                                                                <p><br></p>
-                                                                                                <pre>
-  // &lt;link href="https://cdn.quilljs.com/1.0.5/quill.snow.css" rel="stylesheet"&gt;
-	// &lt;script src="https://cdn.quilljs.com/1.0.5/quill.min.js" type="text/javascript"&gt;&lt;/script&gt;
-	var quill = new Quill('#editor', {
-	modules: {
-		toolbar: '#toolbar'
-	},
-	theme: 'snow'
-	});
-	// Open your browser's developer console to try out the API!
-											</pre>
-                                                                                                <p><br></p>
-                                                                                                <p><br></p>
-                                                                                                <p class="ql-align-center"><strong>Built with</strong></p>
-                                                                                                <p class="ql-align-center"><span class="ql-formula" data-value="x^2 + (y - \sqrt[3]{x^2})^2 = 1"></span></p>
-                                                                                                <p><br></p>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                    </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Meta Data</h4>
+                                    <div class="row">
+                                        <div class="col s12 m6">
+                                            <div class="row">
+                                                <div class="col s12 input-field">
+                                                    <input required id="meta_title_az" name="meta_title_az" type="text"
+                                                           class="validate" value="" data-error=".errorTxt2">
+                                                    <label for="meta_title_az">Meta Title AZ</label>
+                                                    <small class="errorTxt2"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="meta_title_en" name="meta_title_en" type="text"
+                                                           class="validate" value="" data-error=".errorTxt3">
+                                                    <label for="meta_title_en">Meta Title EN</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="meta_title_ru" name="meta_title_ru" type="text"
+                                                           class="validate" value="" data-error=".errorTxt3">
+                                                    <label for="meta_title_ru">Meta Title RU</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <div class="row">
+                                                <div class="col s12 input-field">
+                                                    <input required id="meta_description_az" name="meta_description_az"
+                                                           type="text" class="validate" value=""
+                                                           data-error=".errorTxt2">
+                                                    <label for="meta_description_az">Meta Description AZ</label>
+                                                    <small class="errorTxt2"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="meta_description_en" name="meta_description_en"
+                                                           type="text" class="validate" value=""
+                                                           data-error=".errorTxt3">
+                                                    <label for="meta_description_en">Meta Description EN</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <input required id="meta_description_ru" name="meta_description_ru"
+                                                           type="text" class="validate" value=""
+                                                           data-error=".errorTxt3">
+                                                    <label for="meta_description_ru">Meta Description RU</label>
+                                                    <small class="errorTxt3"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="card-content">
+
+                                    <div class="divider mb-1 mt-1"></div>
+                                    <div id="file-upload" class="section">
+                                        <div class="row section">
+                                            <div class="col s12 m4 l3">
+                                                <p>Picture(850x566)</p>
+                                            </div>
+                                            <div class="col s12 m8 l9">
+                                                <input type="file" name="image" id="input-file-events" class="dropify-event"
+                                                       data-default-file=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="divider mb-1 mt-1"></div>
+
+                                    <!-- <div class="card-body"> -->
+
+                                    <ul class="tabs mb-2 row" id="tabs">
+                                        <li class="tab">
+                                            <a class="display-flex align-items-center active" id="account-tab"
+                                               href="#content_az">
+                                                <i class="material-icons mr-1">error_outline</i><span>Content AZ</span>
+                                            </a>
+                                        </li>
+                                        <li class="tab">
+                                            <a class="display-flex align-items-center" id="account-tab"
+                                               href="#content_en">
+                                                <i class="material-icons mr-1">error_outline</i><span>Content EN</span>
+                                            </a>
+                                        </li>
+                                        <li class="tab">
+                                            <a class="display-flex align-items-center" id="account-tab"
+                                               href="#content_ru">
+                                                <i class="material-icons mr-1">error_outline</i><span>Content RU</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="divider mb-3"></div>
+
+                                    <div class="row" id="tabContents">
+
+                                        <div class="col s12" id="content_az">
+                                            <input type="hidden" name="content_az" id="content_az_value">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <div class="col s12">
+                                                        <div id="full-wrapper">
+                                                            <div class="full-container">
+                                                                <div id="content_az_editor" class="editor">
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col s12 display-flex justify-content-end mt-3">
-                                                <button type="submit" class="btn indigo">
-                                                    Save changes</button>
-                                                <button type="button" class="btn btn-light">Cancel</button>
+                                        </div>
+
+
+                                        <div class="col s12" id="content_en">
+                                            <input type="hidden" name="content_en" id="content_en_value">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <div class="col s12">
+                                                        <div id="full-wrapper">
+                                                            <div class="full-container">
+                                                                <div id="content_en_editor" class="editor">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </form>
-                                    <!-- users edit account form ends -->
+
+
+                                        <div class="col s12" id="content_ru">
+                                            <input type="hidden" name="content_ru" id="content_ru_value">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                    <div class="col s12">
+                                                        <div id="full-wrapper">
+                                                            <div class="full-container">
+                                                                <div id="content_ru_editor" class="editor">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
 
+                                <div class="col s12 display-flex justify-content-end mt-3">
+                                    <button type="submit" class="btn indigo">
+                                        Save changes
+                                    </button>
+                                </div>
                             </div>
+
+
                             <!-- </div> -->
                         </div>
                     </div>
-                </div>
-
             </div>
-            <div class="content-overlay"></div>
+            <!-- users edit ends -->
         </div>
+        </form>
+        <div class="content-overlay"></div>
     </div>
-</div>
-<!-- END: Page Main-->
+    </div>
+    </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('accountForm').onsubmit = function () {
+            // Получаем содержимое Quill-редактора по id content_az_editor
+            var editor_content_az = document.getElementById('content_az_editor').querySelector('.ql-editor').innerHTML;
+            document.getElementById('content_az_value').value = editor_content_az;
+
+            var editor_content_en = document.getElementById('content_en_editor').querySelector('.ql-editor').innerHTML;
+            document.getElementById('content_en_value').value = editor_content_en;
+
+            var editor_content_ru = document.getElementById('content_ru_editor').querySelector('.ql-editor').innerHTML;
+            document.getElementById('content_ru_value').value = editor_content_ru;
+        };
+    });
+</script>

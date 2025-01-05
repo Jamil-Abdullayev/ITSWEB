@@ -168,4 +168,91 @@ class ContentController extends Controller
 
         return redirect()->route('same-type-content',$keyword);
     }
+
+    public function aboutUsView(){
+        $sectionData = PageSetting::where('name','about')->first();
+
+        if(is_null($sectionData) || empty($sectionData)){
+            //Default values
+            $sectionData = ['title_az' => '', 'title_en' => '', 'title_ru' => '','description_az' => '', 'description_en' => '', 'description_ru' => '', 'file' => ''];
+        }
+
+        $aboutMainSection = Content::where('keyword','about')->first();
+
+        if(is_null($aboutMainSection) || empty($aboutMainSection)) {
+            //Default values
+            $aboutMainSection =  ['title_az' => '', 'title_en' => '', 'title_ru' => '','description_az' => '', 'description_en' => '', 'description_ru' => ''];
+        }
+
+        $benefits= Content::where('keyword','about-successes')->get();
+
+        if($benefits->isEmpty()) {
+            //Default values
+            $benefits = [0 => ['title_az' => '', 'title_en' => '', 'title_ru' => '','description_az' => '', 'description_en' => '', 'description_ru' => '']];
+        }
+
+
+        return view('modules.about.about', compact('sectionData', 'aboutMainSection', 'benefits'));
+    }
+    public function aboutUsStore(Request $request){
+        //Creating/Updating Section Data
+
+        if ($request->file('file')) {
+            //Deleting old data
+            $oldFileName = Content::where("keyword","about")->get('media')->first();
+            Storage::disk('public')->delete($oldFileName->media ?? '');
+            //Create new file
+            $file = $request->file('file');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('images', $fileName, 'public'); // Сохраните файл с новым именем в директорию "public/images"
+        } else {
+            $path = null;
+        }
+
+
+        PageSetting::updateOrCreate(['name' => 'about'], [
+            'name' => 'about',
+            'title_az' => $request->section_title_az,
+            'title_en' => $request->section_title_en,
+            'title_ru' => $request->section_title_ru,
+            'description_az' => $request->section_description_az,
+            'description_en' => $request->section_description_en,
+            'description_ru' => $request->section_description_ru,
+            'file' => '',
+            'type'     => 'content'
+        ]);
+
+        //update main section of about
+        Content::updateOrCreate(['keyword' => 'about'], [
+            'name' => 'about',
+            'title_az' => $request->about_title_az,
+            'title_en' => $request->about_title_en,
+            'title_ru' => $request->about_title_ru,
+            'description_az' => $request->content_az,
+            'description_en' => $request->content_en,
+            'description_ru' => $request->content_ru,
+            'media' => $path,
+            'type'  => 'content'
+        ]);
+
+        //Updating $about_success
+        Content::where('keyword','about-successes')->delete();
+
+        $orderId = 0;
+        foreach ($request->benefits as $about_success){
+            $orderId++;
+            Content::create([
+                'keyword' => 'about-successes',
+                'order_key' => $orderId,
+                'title_az' => $about_success['title_az'],
+                'title_en' => $about_success['title_en'],
+                'title_ru' => $about_success['title_ru'],
+                'description_az' => $about_success['description_az'],
+                'description_en' => $about_success['description_en'],
+                'description_ru' => $about_success['description_ru']
+            ]);
+        }
+
+        return redirect()->route('about-view');
+    }
 }
